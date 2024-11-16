@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 class CalculatorViewBody extends StatelessWidget {
   const CalculatorViewBody({super.key});
   static const List<List<String>> _calculatorLabels = [
-    ['AC', '+/-', '%', '/'],
-    ['7', '8', '9', '*'],
-    ['4', '5', '6', '-'],
+    ['AC', '+/-', '%', '÷'],
+    ['7', '8', '9', '×'],
+    ['4', '5', '6', '−'],
     ['1', '2', '3', '+'],
     ['0', '.', '=']
   ];
@@ -19,7 +19,7 @@ class CalculatorViewBody extends StatelessWidget {
         children: [
           Container(
             width: double.infinity,
-            height: 130,
+            height: 190,
             alignment: Alignment.bottomRight,
             child: const Text(
               '0',
@@ -50,7 +50,7 @@ class CalculatorViewBody extends StatelessWidget {
                     child: Text(
                       _calculatorLabels[i][j],
                       style: const TextStyle(
-                          fontSize: 28, fontWeight: FontWeight.w500),
+                          fontSize: 36, fontWeight: FontWeight.w400),
                     ),
                   ),
               ],
