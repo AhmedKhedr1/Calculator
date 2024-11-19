@@ -1,7 +1,8 @@
 // ignore_for_file: file_names
+import 'package:calculator/Data/CalculatorLogic.dart';
 import 'package:flutter/material.dart';
 
-class CalculatorViewBody extends StatelessWidget {
+class CalculatorViewBody extends StatefulWidget {
   const CalculatorViewBody({super.key});
   static const List<List<String>> _calculatorLabels = [
     ['AC', '+/-', '%', '÷'],
@@ -10,6 +11,12 @@ class CalculatorViewBody extends StatelessWidget {
     ['1', '2', '3', '+'],
     ['0', '.', '=']
   ];
+
+  @override
+  State<CalculatorViewBody> createState() => _CalculatorViewBodyState();
+}
+
+class _CalculatorViewBodyState extends State<CalculatorViewBody> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,18 +28,22 @@ class CalculatorViewBody extends StatelessWidget {
             width: double.infinity,
             height: 190,
             alignment: Alignment.bottomRight,
-            child: const Text(
-              '0',
-              style: TextStyle(color: Colors.white, fontSize: 65),
+            child:Text(
+              CalculatorLogic.result,
+              style:const TextStyle(color: Colors.white, fontSize: 65),
             ),
           ),
-          for (int i = 0; i < _calculatorLabels.length; i++)
+          for (int i = 0; i < CalculatorViewBody._calculatorLabels.length; i++)
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                for (int j = 0; j < _calculatorLabels[i].length; j++)
+                for (int j = 0; j < CalculatorViewBody._calculatorLabels[i].length; j++)
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                     setState(() {
+                        CalculatorLogic.calculator(CalculatorViewBody._calculatorLabels[i][j]);
+                     });
+                    },
                     style: ButtonStyle(
                         padding: const WidgetStatePropertyAll(EdgeInsets.zero),
                         backgroundColor: WidgetStatePropertyAll(i == 0 && j < 3
@@ -48,7 +59,7 @@ class CalculatorViewBody extends StatelessWidget {
                             ? const Size(160, 65)
                             : const Size.fromRadius(40))),
                     child: Text(
-                      _calculatorLabels[i][j],
+                      CalculatorViewBody._calculatorLabels[i][j],
                       style: const TextStyle(
                           fontSize: 36, fontWeight: FontWeight.w400),
                     ),
